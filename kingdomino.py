@@ -32,8 +32,10 @@ def get_tiles(image):
 # Determine the type of terrain in a tile
 def get_terrain(tile):
     hsv_tile = cv.cvtColor(tile, cv.COLOR_BGR2HSV)
-    hue, saturation, value = np.median(hsv_tile, axis=(0,1)) # Consider using median instead of mean
+    hue, saturation, value = np.median(hsv_tile, axis=(0,1)) # Vi bruger median
     print(f"H: {hue}, S: {saturation}, V: {value}")
+
+    #Vi har fundet alle værdier ved at have ekporteret alle HSV median data. Så har vi sorteret tilknyttet true label (det korrkete terræn) for hver tile og derefter taget mindste og højeste værdi for de intervaller for de pågældene median data for hvert Terræn
     if 22 <= hue <= 37 and 219 <= saturation <= 255 and 105 <= value <= 206:
         return "Field"
     elif 28 <= hue <= 77 and 65 <= saturation <= 225 and 25 <= value <= 70:
